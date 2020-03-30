@@ -1,0 +1,43 @@
+look at 3 models
+-optimization
+-statistical
+-simulation
+
+many problems can be formulated as optimization
+easier to reformulate into previously solved problem
+optimization is computationally challenging
+solution often approximated using greedy algorithm
+
+Knapsack problem
+-max weight you can carry
+-would like to carry everything
+-how to decide?
+-2 variants: 0/1 knapsack problem and fractional knapsack problem
+
+each item represented by pair, <value, weight>
+accomodate item with total of weight no more than, w
+vector L, of length, n, represent set of available items
+vector V, of length, n, indicating if item is taken V[i] = 1 is taken, V[i] = 0 is not taken
+
+Find a V that maximizes:
+
+n-1
+SUM ( V[i]*I[i].value )
+i=0
+
+subject to the contraint that
+
+n-1
+SUM ( V[i]*I[i].weight ) <= w
+i=0
+
+Brute Force Algorithm
+1. enumerate all possible combinations "power set"
+2. remove all combos whose total units exceed allowed weight
+3. from remaining combos choose any ONE largest value
+
+often not practical
+-how big is power set? 2^n (exponential)
+-how many different values can V have? numbers in n bits
+-0/1 knapsack problem is inherently exponential
+
