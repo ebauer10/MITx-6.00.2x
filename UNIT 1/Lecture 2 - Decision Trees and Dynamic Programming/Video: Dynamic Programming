@@ -1,0 +1,76 @@
+Problem solved at each node
+-given remaining weight, maximize value by choosing among remaining items
+-set of previous items, or value of set, doesnt matter - only weight matters
+-we do have overlapping subproblems since only remaining weight matters
+
+Modify maxVal to Use a Memo
+-add memo as third argument
+-key of memo is a tuple
+__(items left to be considered, available weight)
+__items left represented by len(toConsider)
+-first thing performed is check whether is check optimal choice is in memo
+-last thing performed is the memo update
+
+def fastMaxVal(toConsider, avail, memo = {}):
+    """Assumes toConsider a list of subjects, avail a weight
+    memo supplied by recursive calls
+    Returns a tuple of the total value of a solution to the 
+    0/1 knapsack problem and the subjects of that solution"""
+    if (len(toConsider), avail) in memo:
+        result = memo[(len(toConsider), avail)]
+    elif toConsider == [] or avail == 0:
+        result = (0, ())
+    elif toConsider[0].getCost() > avail:
+        #explore right branch only
+        result = fastMaxVal(toConsider[1:], avail, memo)
+    else:
+        nextItem = toConsider[0]
+        #explore left branch
+        withVal, withToTake = fastMaxVal(toConsider[1:], 
+                                         avail - nextItem.getCost(), memo)
+        withVal += nextItem.getValue()
+        #explore right branch
+        withoutVal, withoutToTake = fastMaxVal(toConsider[1:], avail, memo)
+        #choose better branch
+        if withVal > withoutVal:
+            result = (withVal, withToTake + (nextItem,))
+        else:
+            result = (withoutVal, withoutToTake)
+    memo[(len(toConsider), avail)] = result
+    return result
+
+def testMaxVal(foods, maxUnits, algorithm, printItems = True):
+    print('Menu contains', len(foods), 'items')
+    print('Use search tree to allocate', maxUnits, 'calories')
+    val, taken = algorithm(foods, maxUnits)
+    if printItems:
+        print('Total value of items taken =', val)
+        for item in taken:
+            print(' ', item)
+
+import random
+
+def buildLargeMenu(numItems, maxVal, maxCost):
+    items = []
+    for i in range(numItems):
+        items.append(Food(str(i), random.randint(1, maxVal), random.randint(1, maxCost)))
+    return items
+
+for numItems in (5, 10, 15, 20, 25, 30, 35, 40, 45, 50):
+    items = buildLargeMenu(numItems, 90, 250)
+    testMaxVal(items, 750, fastMaxVal, False)
+
+How can dynamic programming fix exponential problems?
+-computational complexity can be subtle
+-running time of fastMaxVal is governed by num of distinct pairs <toConsider, avail>
+__number of possible values of toConsider bounded by len(items)
+__possible values of avail harder to characterize - bounded by num of distinct sums of weights
+__covered more in assigned reading - pseduopolynomial algorithms
+
+Summary of Lectures 1 and 2
+-many problems can be formulated as optimization problems
+-greedy algorithms can often provide adequate but not always optimal solutions
+-finding an optimal solution is usually exponentially hard
+-dynamic programming often yields good performance for a subclass of optimization problems
+__those with optimal substructure and overlapping subproblems
+__solutions always correct and fast under the correct circumstances
