@@ -1,0 +1,44 @@
+Computational Models
+-programs that help us understand the world and solve practical problems
+-saw how to map an optimization problem and design a program to solve it
+-lets look at a class of models called graphs
+
+Graph
+-set of nodes (vertices)
+__sometimes properties associated with them
+-nodes are connected by edges (arcs)
+-undirected (graph)
+-directed (diagraph)
+__source (parent) and destination (child) nodes
+-unweighted or weighted
+-useful for capturing practical relationships among entities
+__ex. atoms in molecule, rail links between cities, ancestral relationships
+
+Trees: An Important Special Case
+-a directed graph in whcih each pair of nodes is connected by a single path
+__recall search trees used in knapsack problem
+
+Why Graphs are so Useful
+-world is full of networks based on relationships
+__ex. computer networks, transportation networks, financial networks, 
+      sewer networks, criminal networks, political networks, social networks
+
+Getting to the office
+-model road system using a diagraph
+-nodes: points where roads end or meet
+-edges: connections between points
+__each edge is a weight indicating time it will take to get from 
+  source node to desination node for that edge
+-solve a graph optimization problem
+__shortest weighted path between my house and my office
+
+Leonhard Euler's Model
+-each island is a node
+-each bridge is an undirected bridge
+-model abstracts away irrelevant details
+__ex. size of islands, length of bridges
+-is there a path that contains each edge exactly once?
+-Euler invented a new way to think about a large class of problems
+
+
+
