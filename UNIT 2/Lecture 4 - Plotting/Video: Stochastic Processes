@@ -1,0 +1,26 @@
+Predictive nondeterminism
+Stochastic Processes
+-ongoing porcess where the next state might depend on both 
+ the previous states and some random element
+ex.
+def rollDie():
+  """returns a radomly chosent int between 1 and 6"""
+  
+def squareRoot(x, epsilon):
+  """Assumes x and epsilon are of type float
+  x>= 0 and epsilon > 0
+  Returns float y such that x-epsilon <= y*y <= x+epsilon"""
+  -specification allows but does not require, a nondetereministic implementation
+  -can be tricky when debugging a program
+  
+ Implementing a Random Process
+
+import random
+def rollDie():
+  """returns random int between 1 and 6"""
+  return random.choice([1, 2, 3, 4, 5, 6])
+def testRoll(n=10):
+  result = ''
+  for i in range(n):
+    result = result + str(rollDie())
+  print(result)
