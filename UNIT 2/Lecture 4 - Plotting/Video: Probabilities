@@ -1,0 +1,66 @@
+-count the number of possible events
+-count the number of events that have the property of interest
+-divide one by the other
+probabilty of 11111?
+-11111,11112...66666
+-1/(6**5) ~ 0.0001286
+-every number is the same probability
+
+3 basics of probability
+-probabilities are always 0 - 1
+-if probability is p, the non-occurence is 1-p
+-when events are independent, the probability of all events occuring is equal to 
+ a product of the probabilities of each other
+
+independence is no influence on the outcome of each other
+
+import random
+random.seed(0)
+
+def rollDie():
+  """returns random int between 1 and 6"""
+  return random.choice([1, 2, 3, 4, 5, 6])
+
+def testRoll(n=10):
+  result = ''
+  for i in range(n):
+    result = result + str(rollDie())
+  print(result)
+  
+def runSim(goal, numTrials):
+    total = 0
+    for i in range(numTrials):
+        result = ''
+        for j in range(len(goal)):
+            result += str(rollDie())
+        if result == goal:
+            total += 1
+    print('Actual probability=', round(1/(6**len(goal)), 8))
+    estProbability = round(total/numTrials, 8)
+    print('Estimated Probability =', round(estProbability, 8))
+        
+runSim('11111', 1000)
+
+-random generates sequence of random numbers in range that uses to select sequence
+-pseudorandom because you can't be truly random
+-called the same seed every program instead of letting the program choose random seed
+-very useful in debugging programs
+-if you have a very rare event, and few trials, likely to get wrong answer
+
+How common is double 6's?
+6**2 possible combinations on two die
+-1 has 2 6's
+-hence prob is 1/36 ~ .00
+-or 1/6*1/6 = 1/36 since they are independent
+
+def fracBoxCars(numTests):
+    numBoxCars = 0
+    for i in range(numTests):
+        if rollDie() == 6 and rollDie() == 6:
+            numBoxCars += 1
+    return numBoxCars/numTests
+
+print('Frequency of double 6 =', str(fracBoxCars(100000)*100) + '%')
+
+-don't confuse sample probability with acutal probability
+-no need to do simulation at all for closed system answers, sometimes not true - simulations useful
