@@ -1,0 +1,27 @@
+ Simulation Models
+ -description of computations that provide useful information about the possible behaviors of the system
+  being modeled
+ -descriptive, not prescriptive
+ -only an approximation to reality
+ -'all models are wrong, but some are useful.' -george box
+ 
+ Simultions used a lot
+ -model systems that are mathematically intractable
+ -extract useful intermediate results
+ -lend themselves to development by successive refinement and 'what if' questions
+ 
+ Why Random Walks?
+ -important in many domains
+ -ex. stock market, diffusion processes, etc.
+ -good illustration of how to use simulations to understand things
+ -excuse to cover important programming topics
+ -ex. inheritance mechanisms, more about plotting
+ 
+Brownian Motion is a Random Walk
+
+Drunkard's Walk
+-1 step any direction paralell to x or y axis
+-after 2 steps, .25 at origin, .25 2 units away, .50 SQRT(2) units away
+
+Expected Distance after 100,000 steps?
+-will use simulation
