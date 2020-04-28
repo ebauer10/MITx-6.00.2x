@@ -1,0 +1,123 @@
+class EuRoulette(FairRoulette):
+    def __init__(self):
+        FairRoulette.__init__(self)
+        self.pockets.append('0')
+    def __str__(self):
+        return 'European Roulette'
+
+class AmRoulette(EuRoulette):
+    def __init__(self):
+        EuRoulette.__init__(self)
+        self.pockets.append('00')
+    def __str__(self):
+        return 'American Roulette'
+    
+def findPocketReturn(game, numTrials, trialSize, toPrint):
+    pocketReturns = []
+    for t in range(numTrials):
+        trialVals = playRoulette(game, trialSize, toPrint)
+        pocketReturns.append(trialVals[2])
+    return pocketReturns
+
+random.seed(0)
+numTrials = 20
+resultDict = {}
+games = (FairRoulette, EuRoulette, AmRoulette)
+for G in games:
+    resultDict[G().__str__()] = []
+for numSpins in (100, 1000, 10000, 100000):
+    print('\nSimulate betting a pocket for', numTrials, 
+              'trials of', numSpins, 'spins each')
+    for G in games:
+        pocketReturns = findPocketReturn(G(), numTrials,
+                                         numSpins, False)
+        print('Exp. return for', G(), '=',
+              str(100*sum(pocketReturns)/float(len(pocketReturns))) + '%')
+              
+Simulate betting a pocket for 20 trials of 100 spins each
+Exp. return for Fair Roulette = 6.199999999999998%
+Exp. return for European Roulette = -8.200000000000001%
+Exp. return for American Roulette = 2.599999999999998%
+
+Simulate betting a pocket for 20 trials of 1000 spins each
+Exp. return for Fair Roulette = 4.760000000000002%
+Exp. return for European Roulette = -2.4399999999999995%
+Exp. return for American Roulette = -9.46%
+
+Simulate betting a pocket for 20 trials of 10000 spins each
+Exp. return for Fair Roulette = -1.3060000000000003%
+Exp. return for European Roulette = -4.095999999999999%
+Exp. return for American Roulette = -5.698000000000001%
+
+Simulate betting a pocket for 20 trials of 100000 spins each
+Exp. return for Fair Roulette = 0.7982%
+Exp. return for European Roulette = -2.5876000000000006%
+Exp. return for American Roulette = -5.134600000000001%
+
+Sampling Space of Possible Outcomes
+-never possible to guarantee perfect accuracy, unless entire pop is sampled
+-not to say estimate isn't correct
+-how many samples to have confidence in answer?
+__depends upon variability in underlying distribution
+
+Quantifying Variation in Data
+-std dev is simply square root of variance
+-outliers can have big effect
+-std dev should always be considered relative to mean
+
+Confidence Levels and Intervals
+-instead of estimating unknown number by single value (eg mean of set of trials),
+confidence interval provides range that is likely to contain value and a confidence
+that the value lay within the range
+
+Empirical Rule
+~68% of data within 1 std dev
+~95% of data within 2 std dev
+~99.7% of data within 3 std dev
+
+def getMeanAndStd(X):
+    mean = sum(X)/float(len(X))
+    tot = 0.0
+    for x in X:
+        tot += (x - mean)**2
+    std = (tot/len(X))**0.5
+    return mean, std
+
+random.seed(0)
+numTrials = 20
+resultDict = {}
+games = (FairRoulette, EuRoulette, AmRoulette)
+for G in games:
+    resultDict[G().__str__()] = []
+for numSpins in (100, 1000, 10000, 100000):
+    print('\nSimulate betting a pocket for', numTrials, 
+              'trials of', numSpins, 'spins each')
+    for G in games:
+        pocketReturns = findPocketReturn(G(), 20,
+                                         numSpins, False)
+        mean, std = getMeanAndStd(pocketReturns)
+        resultDict[G().__str__()].append((numSpins,
+                                          100*mean, 100*std))
+        print('Exp. return for', G(), '=',
+              str(round(100*mean, 3))
+              + '%', '+/-' + str(round(100*1.96*std, 3)) + '% with 95% confidence')
+              
+Simulate betting a pocket for 20 trials of 100 spins each
+Exp. return for Fair Roulette = 6.2% +/-152.114% with 95% confidence
+Exp. return for European Roulette = -8.2% +/-90.567% with 95% confidence
+Exp. return for American Roulette = 2.6% +/-92.74% with 95% confidence
+
+Simulate betting a pocket for 20 trials of 1000 spins each
+Exp. return for Fair Roulette = 4.76% +/-39.658% with 95% confidence
+Exp. return for European Roulette = -2.44% +/-31.31% with 95% confidence
+Exp. return for American Roulette = -9.46% +/-36.273% with 95% confidence
+
+Simulate betting a pocket for 20 trials of 10000 spins each
+Exp. return for Fair Roulette = -1.306% +/-9.295% with 95% confidence
+Exp. return for European Roulette = -4.096% +/-10.902% with 95% confidence
+Exp. return for American Roulette = -5.698% +/-11.077% with 95% confidence
+
+Simulate betting a pocket for 20 trials of 100000 spins each
+Exp. return for Fair Roulette = 0.798% +/-2.603% with 95% confidence
+Exp. return for European Roulette = -2.588% +/-4.103% with 95% confidence
+Exp. return for American Roulette = -5.135% +/-4.734% with 95% confidence
