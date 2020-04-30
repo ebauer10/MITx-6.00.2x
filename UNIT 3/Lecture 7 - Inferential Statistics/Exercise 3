@@ -1,0 +1,39 @@
+Exercise 3
+5/5 points (graded)
+Write a function, stdDevOfLengths(L) that takes in a list of strings, L, and outputs the standard deviation of the lengths of the strings. Return float('NaN') if L is empty.
+
+Recall that the standard deviation is computed by this equation:
+
+∑𝑡 in 𝑋(𝑡−𝜇)2𝑁‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾√ 
+where:
+
+𝜇  is the mean of the elements in X.
+
+∑𝑡 in 𝑋(𝑡−𝜇)2  means the sum of the quantity  (𝑡−𝜇)2  for t in X.
+
+That is, for each element (that we name t) in the set X, we compute the quantity  (𝑡−𝜇)2 . We then sum up all those computed quantities.
+
+N is the number of elements in X.
+
+Test case: If L = ['a', 'z', 'p'], stdDevOfLengths(L) should return 0.
+
+Test case: If L = ['apples', 'oranges', 'kiwis', 'pineapples'], stdDevOfLengths(L) should return 1.8708.
+
+Note: If you want to use functions from the math library, be sure to import math. If you want to use numpy arrays, you should add the following lines at the beginning of your code for the grader:
+import os
+os.environ["OPENBLAS_NUM_THREADS"] = "1"
+Then, do import numpy as np and use np.METHOD_NAME in your code.
+
+import os
+os.environ["OPENBLAS_NUM_THREADS"] = "1"
+def stdDevOfLengths(L):
+    """
+    L: a list of strings
+    Returns: float, the standard deviation of the lengths of the strings,
+      or NaN if L is empty.
+    """
+    import numpy as np
+    if len(L) == 0:
+        return float('NaN')
+    else:
+        return np.std([i for i in map(len, L)])
