@@ -1,0 +1,60 @@
+Emprical Rule
+2 key assumptions
+-mean estimation error of 0
+-distribution of the erros in the estimates is normal
+
+Defining Distributions
+-use probability distribution
+-captures notion of relative frequence w a random variable takes on certain values
+__discrete random variables from finite set of values
+__continuous random varials drawn from reals between 2 numbers ie infinte set
+-for discrete variable, simply list probability of each value, must add to 1
+-for continuous, can't enumerate probabilty for each fo an infinite set of values
+
+PDFs
+-distributions defined by 'probability density functions'
+-probability of random variable lying between 2 values
+-defines curve where values on x-axis lie between max and min value
+-area under curve between 2 points, is probability of example falling within range
+
+Normal Distributions
+-nice mathematical properties
+-occur a lot!
+
+A Digression
+SciPy library contains useful math functions
+-scipy.integrate.quad has up to 4 arguments
+__function to be integrated
+__upper and lower limit
+__optional tuple supplying values for all arguments, except the first, of the function to be integrated
+-scipy.integrate.quad returns a tuple
+__approximation to result
+__estimation of absolute error
+
+import pylab        
+import scipy.integrate
+
+def gaussian(x, mu, sigma):
+    factor1 = (1.0/(sigma*((2*pylab.pi)**0.5)))
+    factor2 = pylab.e**-(((x-mu)**2)/(2*sigma**2))
+    return factor1*factor2
+
+def checkEmpirical(numTrials):
+    for t in range(numTrials):
+        mu = random.randint(-10,10)
+        sigma = random.randint(1,10)
+        print('For mu =', mu, 'and sigma=', sigma)
+        for numStd in (1, 1.96, 3):
+            area = scipy.integrate.quad(gaussian,
+                                        mu-numStd*sigma,
+                                        mu+numStd*sigma,
+                                        (mu, sigma))[0]
+            print(' Fraciton within', numStd, 'std=', round(area, 4))
+            
+checkEmpirical(3)
+
+Not all distributions are normal
+-empirical works for normal distributions
+-roulette wheel is uniformly distributed
+__each outcome equally probable
+-why does normal distribution work?
