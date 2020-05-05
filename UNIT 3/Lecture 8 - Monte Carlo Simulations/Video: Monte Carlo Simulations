@@ -1,0 +1,57 @@
+Stanislaw Ulam
+Hydrogen bomb, monte carlo method
+
+Archimedes
+96-side inner and outer polygon
+
+Buffon-Laplace
+circle inside square method
+
+import random, numpy
+
+def throwNeedles(numNeedles):
+    inCircle = 0
+    for Needles in range(1, numNeedles + 1, 1):
+        x = random.random()
+        y = random.random()
+        if (x*x + y*y)**0.5 <= 1.0:
+            inCircle += 1
+    return 4*(inCircle/float(numNeedles))
+
+def getEst(numNeedles, numTrials):
+    estimates = []
+    for t in range(numTrials):
+        piGuess = throwNeedles(numNeedles)
+        estimates.append(piGuess)
+    sDev = numpy.std(estimates)
+    curEst = sum(estimates)/len(estimates)
+    print('Est. =' + str(curEst) +\
+          ', Std. dev. =' + str(round(sDev, 6))\
+              + ', Needles =' + str(numNeedles))
+    return (curEst, sDev)
+
+def estPi(precision, numTrials):
+    numNeedles = 1000
+    sDev = precision
+    while sDev >= precision/2:
+        curEst, sDev = getEst(numNeedles, numTrials)
+        numNeedles *= 2
+    return curEst
+
+random.seed(0)
+estPi(0.005, 100)
+
+-being right isn't good enough
+-not sufficient to produce good answer
+-need to have reason to believe it is right
+-small std dev implies that we are close to true value of pi
+-correct to state: 95% of time we will estimate value or probability of pi is between 2 values
+-statistically valid /= true
+
+Generally Useful Technique
+-to estimate area of some region, R
+__pick an enlcosing region E, such that area of E is easy to calculate and R lies within E
+__pick set of random points in E
+__let F be fraction of points that fall within R
+__multiply area of E by F
+-way to estimate integrals
