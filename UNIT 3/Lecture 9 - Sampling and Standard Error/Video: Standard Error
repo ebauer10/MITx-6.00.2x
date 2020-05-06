@@ -1,0 +1,46 @@
+Central Limit Theorem
+Standard Error of the Mean
+SE = stddev/SQRT(n)
+
+def sem(popSD, sampleSize):
+    return popSD/sampleSize**0.5
+
+sampleSizes = (25,50,100,200,300,400,500,600)
+numTrials = 50
+population = getHighs()
+popSD = numpy.std(population)
+sems = []
+sampleSDs = []
+for size in sampleSizes:
+    sems.append(sem(popSD, size))
+    means = []
+    for t in range(numTrials):
+        sample = random.sample(population, size)
+        means.append(sum(sample)/len(sample))
+    sampleSDs.append(numpy.std(means))
+pylab.plot(sampleSizes, sampleSDs,
+           label = 'Std of 50 means')
+pylab.plot(sampleSizes, sems, 'r--', label = 'SEM')
+pylab.title('SEM vs. SD for 50 means')
+pylab.legend()
+
+but, we don't know std dev of population
+The point
+-once sample reaches reasonable size, sample std dev is pretty good approx to pop std dev
+-does distribution of population matter?
+-does size of population matter?
+
+3 different distributions
+-random.random() uniform
+-random.gauss(0,1) normal
+-random.expovariate(0.5) exponential 'lambda = 0.5'
+-skew is a measure of asymmetry of a probability distribution
+
+To Estimate Mean from a Single Sample
+-choose sample size based on estimate of skew in population
+-choose random sample
+-compute mean and std dev of sample
+-use std dev of sample to estimate SE
+-use estimated SE to generate confidence intervals around sample mean
+-works great when we choose independent random samples, not always the case
+ 
