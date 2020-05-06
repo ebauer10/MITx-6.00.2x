@@ -1,0 +1,62 @@
+Probability Sampling
+-each member of pop has nonzero prob of being included in sample
+-each member has equal chance of being chosen
+-not always appropriate
+
+Stratified Sampling
+-partition population in subgroups
+-take random sample from each subgroup 
+-whenever small subgroups need to be represented
+-proportional to size of their population
+
+Predicting Outcome of Election
+-ask every voter, random samples, one sample and estimate mean weight and confidence interval
+-no obvious way to evaluate sampling techniques
+
+import pylab, numpy, random
+
+def makeHist(data, title, xlabel, ylabel, bins = 20):
+    pylab.hist(data, bins = bins)
+    pylab.title(title)
+    pylab.xlabel(xlabel)
+    pylab.ylabel(ylabel)
+    
+def getHighs():
+    inFile = open('temperatures.csv')
+    population = []
+    for l in inFile:
+        try:
+            tempC = float(l.split(',')[1])
+            population.append(tempC)
+        except:
+            continue
+    return population
+
+def getMeansAndSDs(population, sample, verbose = False):
+    popMean = sum(population)/len(population)
+    sampleMean = sum(sample)/len(sample)
+    if verbose:
+        makeHist(population,
+                 'Daily High 1961-2015, Population\n' +\
+                     '(mean =' + str(round(popMean, 2)) + ')',
+                     'Degrees C', 'Number Days')
+        pylab.figure()
+        makeHist(sample, 'Daily High 1961-2015, Sample\n' +\
+                 '(mean =' + str(round(popMean, 2)) + ')',
+                 'Degrees C', 'Number Days')
+        print('Population mean =', popMean)
+        print('Standard deviation of population =',
+              numpy.std(population))
+        print('Sample mean =', sampleMean)
+        print('Standard deviation of sampmle =',
+              numpy.std(sample))
+    return popMean, sampleMean,\
+        numpy.std(population), numpy.std(sample)
+        
+random.seed(0)
+population = getHighs()
+sample = random.sample(population, 100)
+getMeansAndSDs(population, sample, True)
+
+sampling without replacement
+random.sample(population, sampleSize)
