@@ -1,0 +1,74 @@
+Polynomials with One Variable (x)
+linear: ax + b
+parabola: ax^2 + bx + c
+
+Find values of a and b such that when we use the polynomial to compute y values for all of the x values in our experiment, the squared difference of these values and corresponding y values is minimized
+A linear regression problem
+Many algorithms for doing this including one similar to Newton's method (shown in 6.00.1x)
+
+polyFit
+pylab.polyfit(observedX, observedY, n)
+-finds coefficients of a polynomial of degree n that provides a best least squares fit for the observed data
+
+import random, pylab, numpy
+
+def getData(fileName):
+    dataFile = open(fileName, 'r')
+    distances = []
+    masses = []
+    dataFile.readline() #discard header
+    for line in dataFile:
+        d, m = line.split()
+        distances.append(float(d))
+        masses.append(float(m))
+    dataFile.close()
+    return (masses, distances)
+
+def labelPlot():
+    pylab.title('Measured Displacement of Spring')
+    pylab.xlabel('|Force| (Newtons)')
+    pylab.ylabel('Distance (meters)')
+    
+def plotData(fileName):
+    xVals, yVals = getData(fileName)
+    xVals = pylab.array(xVals)
+    yVals = pylab.array(yVals)
+    xVals = xVals* 9.81 #get force
+    pylab.plot(xVals, yVals, 'bo',
+               label = 'Measured displacements')
+    labelPlot()
+
+def fitData(fileName):
+    xVals, yVals = getData(fileName)
+    xVals = pylab.array(xVals)
+    yVals = pylab.array(yVals)
+    xVals = xVals * 9.81 #get force
+    pylab.plot(xVals, yVals, 'bo',
+               label = "Measure points")
+    labelPlot()
+    a,b = pylab.polyfit(xVals, yVals, 1)
+    estYVals = a*xVals + b
+    print('a =', a, 'b=', b)
+    pylab.plot(xVals, estYVals, 'r', 
+               label = 'Linear fit, k ='
+               + str(round(1/a, 5)))
+    pylab.legend(loc = 'best')
+    
+# fitData('springData.txt')
+
+def fitData1(fileName):
+    xVals, yVals = getData(fileName)
+    xVals = pylab.array(xVals)
+    yVals = pylab.array(yVals)
+    xVals = xVals*9.81 #get force
+    pylab.plot(xVals, yVals, 'bo',
+               label = 'Measured points')
+    labelPlot()                 
+    model = pylab.polyfit(xVals, yVals, 1)
+    estYVals = pylab.polyval(model, xVals)
+    pylab.plot(xVals, estYVals, 'r',
+               label = 'Linear fit, k = '
+               + str(round(1/model[0], 5)))
+    pylab.legend(loc = 'best')
+
+fitData1('springData.txt')
