@@ -1,1 +1,25 @@
-:)
+ Statistics Meets Experimental Science
+ -conduct experiment to gather data
+ -use theory to generate questions about data
+ -design computation to help answer questions about data
+ -consider, a spring
+ 
+ Linear spring: amount of force needed to stretch or compress spring is linear in the distance the spring is stretched or compressed
+ spring constant, k, determines how much force is needed
+
+Hooke's Law
+F = -kd
+not all springs are linear
+F = 0.01m * 35,000 N/m = 350N = mass * acc = mass * 9.8 m/s^2 = 35.68 kg
+
+Finding k
+k = 9.86 * m/x
+
+Fitting Curves to Data
+-we are finding a fit that relates an independent var (mass) to estimated value of dependent var (distance)
+
+Least Squares Objective Function
+sum of residuals
+len(obeserved)-1
+    SUM   (obsered[i] - predicted[i])^2 
+    i=0
