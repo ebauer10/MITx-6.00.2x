@@ -1,0 +1,47 @@
+Increasing the Complexity
+-What happens when we increase order of polynomial
+-if extra term is useless, set coeff to 0
+-if data is noisy, can fit noise instead of underlying pattern
+
+Fitting a Quadratic to a Perfect Line
+#a line
+xVals = (0,1,2,3)
+yVals = xVals
+pylab.plot(xVals, yVals, label = 'Actual values')
+a,b,c = pylab.polyfit(xVals, yVals, 2)
+print('a =', round(a, 4), 'b =', round(b, 4),
+      'c =', round(c, 4))
+estYVals = pylab.polyval((a,b,c), xVals)
+pylab.plot(xVals, estYVals, 'r--', label = 'Predictive values')
+print('R-squared = ', rSquared(yVals, estYVals))
+pylab.legend(loc = 'best')
+
+pylab.figure()
+#Extend domain
+xVals = xVals + (20,)
+yVals = xVals
+pylab.plot(xVals, yVals, label = 'Actual values')
+estYVals = pylab.polyval(model, xVals)
+pylab.plot(xVals, estYVals, 'r--', label = 'Predicted values')
+print('R-squared = ', rSquared(yVals, estYVals))
+pylab.legend(loc = 'best')
+
+Simulate a small measurement error
+#almost a line
+xVals = (0,1,2,3)
+yVals = (0,1,2,3.1)
+pylab.plot(xVals, yVals, label = 'Actual values')
+model = pylab.polyfit(xVals, yVals, 2)
+print(model)
+estYVals = pylab.polyval(model, xVals)
+pylab.plot(xVals, estYVals, 'r--', label = 'Predicted values')
+print('R-squared = ', rSquared(yVals, estYVals))
+pylab.legend(loc = 'best')
+
+Suppose we use a 1st degree fit
+model = pylab.polyfit(xVals, yVals, 1)
+
+Take Home Message
+-choosing an over complex model can lead to overfitting the training data
+-increases risk of model that works poorly on new data
+-insufficiently complex model has other problems
