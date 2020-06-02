@@ -1,0 +1,42 @@
+What is Machine Learning
+-many useful programs learn something
+-linear regression learn models of data
+-"ability to learn without being explicityly programmed"
+-modern statistics meets optimization
+-data and output go into computer and create program, then new data fed to program for output
+
+Generalization
+-deduce new facts from old facts
+-limited by accuracy of deduction process
+-predictive activity
+
+Basic Paradigm
+-observe set: training data
+-infer something about process
+-use inference to make predictions about test data
+
+All ML Methods Require
+-representation of features
+-distance metric for feature vectors
+-objective function and contraints
+-optimization method for learning the model
+-evaluation method
+
+Supervised Learning
+-start with set of feature vector/value pairs
+-goal: find model that predicts value for previously unseen feature vector
+-regression model predicts a real
+-classification models predicts a label chosen from set
+
+Unsupervised Learning
+-start with set of feature vectors, no labels
+-goal: uncover some latent structure in set of feature vectors
+-clustering most common technique
+-define some metric that captures how similar one feature is to another
+
+Choosing Features
+-features never fully describe the situation
+-Feature engineering:
+-represent examples by feature vectors to facilitate generalization
+-some features are helpful, others might cause to overfit
+-want to maximize ratio of useful input to irrelevant input, signal to noise ratio (SNR)
