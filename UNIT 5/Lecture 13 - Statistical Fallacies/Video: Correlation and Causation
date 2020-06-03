@@ -1,0 +1,34 @@
+Cum Hoc Ergo Propter Hoc
+-with this, therefore because of this
+-humans wired to find patterns in info, and like to think causally
+-can be a lurking variable
+
+Establishing Causation
+-attempt to control for all variables other than ones of interest, rarely possible
+-randomized control studies the gold standard
+-deal w control group and treatment group identically except with respect to thing being studied
+-observational studies do not demonstrate causation
+
+Major Topics
+-optimization problems
+-stochastic thinking
+-modeling aspects of the world
+__random walks, games of chance, making sense of data
+-becoming a better programmer
+__exposure to python features and libraries, practice, practice, practice
+-many problems can be formulated in terms of 
+__objective function, set of contraints
+-greedy algorithms often useful but may not find optimal solution
+-many optimization problems inherently exponential
+__dynamic programming often works, memoization a generally useful technique
+-ex. knapsack problems, graph problems, curve fitting, clustering
+-world is predictably non-deterministic
+-thinking in terms of probablilities often useful
+-randomness powerful tool for building computations that model the world
+-random computations useful even for problems w/o randomness
+-models always inaccurate but provide abstractions of reality
+-deterministic models e.g. graph theoretic
+-statistical models
+__simulation models (monte carlo), curve fitting (linear regression), mahcine learning
+-characterizing accuracy is critical, CLM, empirical rule
+
