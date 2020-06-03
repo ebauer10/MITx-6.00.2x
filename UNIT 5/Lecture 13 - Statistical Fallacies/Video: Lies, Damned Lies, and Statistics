@@ -1,0 +1,16 @@
+There are 3 kinds of lies
+-lies, damned lies, and statistics
+
+Anscombe's Quartet
+-4 groups containing 11 x, y pairs
+-statistics about the data is not the same as the data
+-use visualization tools to look at the data itself
+
+Lying with Pictures
+-scales can be misleading, look carefully at labels and axes
+-ask whether the things being compared are actually comparable
+
+GIGO
+Garbage in, garbage out
+-errors can be not random and systematic
+-analysis of bad data can lead to dangerous conclusions
