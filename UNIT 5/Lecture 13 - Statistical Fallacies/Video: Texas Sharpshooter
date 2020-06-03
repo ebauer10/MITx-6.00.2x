@@ -1,0 +1,21 @@
+Sampling
+-all statistical techniques are based on assumption that sample is representative
+-if random sampling is used, we can make precise math statements about population
+-easy to get random samples in simulations
+-not so easy to do in field, where some examples are more convenient to get than others
+
+Non-representative Sampling
+-'convenience sampling' not usually random
+-survivor bias, non response bias
+-when samples not random and independent, we shouldn't draw conclusions from them
+-understand how data was colleted, and whether assumptions are satisfied, if not, be wary
+
+-context matters, a number means little without context
+-beware of percentages when you don't know the baseline
+
+Cancer Clusters
+-greater than expected number of cancer cases withing a group in an area over time
+-about 1000 cancer clusters per year are reported to authorities in the US
+
+The Texas Sharpshooter
+-ex post facto putting a target where they want
