@@ -1,0 +1,93 @@
+
+Consider the following code:
+
+import random, pylab
+xVals = []
+yVals = []
+wVals = []
+for i in range(1000):
+    xVals.append(random.random())
+    yVals.append(random.random())
+    wVals.append(random.random())
+xVals = pylab.array(xVals)
+yVals = pylab.array(yVals)
+wVals = pylab.array(wVals)
+xVals = xVals + xVals
+zVals = xVals + yVals
+tVals = xVals + yVals + wVals
+For each of the following questions, select the best answer from the set of choices.
+
+Problem 2-1
+2/2 points (graded)
+The values in tVals are most closely:
+
+
+Uniformly distributed
+Distributed with a Gaussian distribution
+Exponentially distributed
+correct
+SubmitYou have used 1 of 1 attemptSome problems have options such as save, reset, hints, or show answer. These options follow the Submit button.
+Correct (2/2 points)Review
+Problem 2-2
+2/2 points (graded)
+The values in xVals are most closely:
+
+
+Uniformly distributed
+Distributed with a Gaussian distribution
+Exponentially distributed
+correct
+SubmitYou have used 1 of 1 attemptSome problems have options such as save, reset, hints, or show answer. These options follow the Submit button.
+Correct (2/2 points)Review
+For each of the following expressions using the code above, match the following calls to pylab.plot with one of the graphs shown below.
+
+You can click on the following images to view a larger size.
+
+line from 0,0 to 2,1
+Graph 1	vertical jagged lines in box from 0,0, to 2,1
+Graph 2	horizontal jagged lines in box from 0,0, to 2,1
+Graph 3
+lines going in all directions in box from 0,0, to 2,1
+Graph 4	diagonal  jagged lines in box from 0,0, to 2,1 with no lines in top left and bottom right quadrants
+Graph 5	line from 0,1 to 2,0
+Graph 6
+Problem 2-3
+2/2 points (graded)
+pylab.plot(xVals, zVals)
+
+Graph 5
+ correct 
+SubmitYou have used 1 of 1 attemptSome problems have options such as save, reset, hints, or show answer. These options follow the Submit button.
+Correct (2/2 points)Review
+Problem 2-4
+2/2 points (graded)
+pylab.plot(xVals, yVals)
+
+Graph 4
+ correct 
+SubmitYou have used 1 of 1 attemptSome problems have options such as save, reset, hints, or show answer. These options follow the Submit button.
+Correct (2/2 points)Review
+Problem 2-5
+2/2 points (graded)
+pylab.plot(xVals, sorted(yVals))
+
+Graph 3
+ correct 
+SubmitYou have used 1 of 1 attemptSome problems have options such as save, reset, hints, or show answer. These options follow the Submit button.
+Correct (2/2 points)Review
+Problem 2-6
+2/2 points (graded)
+pylab.plot(sorted(xVals), yVals)
+
+Graph 2
+ correct 
+SubmitYou have used 1 of 1 attemptSome problems have options such as save, reset, hints, or show answer. These options follow the Submit button.
+Correct (2/2 points)Review
+Problem 2-7
+2/2 points (graded)
+pylab.plot(sorted(xVals), sorted(yVals))
+
+Graph 1
+ correct 
+SubmitYou have used 1 of 1 attemptSome problems have options such as save, reset, hints, or show answer. These options follow the Submit button.
+Correct (2/2 points)Review
